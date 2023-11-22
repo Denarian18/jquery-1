@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        body{
+            background-image:url(orsrc72235.jpg);
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #header{
+            display: block;
+            border: 1px solid grey;
+            border-radius: 20%;
+            margin: 10% 30%;
+            padding-top: 50px;
+           align-content: center;
+            width: 500px;
+            height: 500px;
+            color: azure;
+            box-shadow: 10px 10px 15px black;
+
+        }
+        h1{
+           text-align: center;
+           font-size: 100px;
+           font-weight: 70px;
+           text-shadow: 10px 10px 15px black;
+        }
+        h2{
+            text-align: center;
+            margin-top: -40px;
+             text-shadow: 10px 10px 15px black;
+        }
+        p{
+            text-align: center;
+             text-shadow: 10px 10px 15px black;
+        }
+        button:hover{
+    border: none;
+    background-color: black;
+    cursor: pointer;
+    
+}
+button{
+    background-color: red;
+    display: inline-block;
+    border: 2px solid red;
+    height: 30px;
+    width: 150px;
+    margin-left: 35%;
+    color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-weight: bold;
+    transition: background-color 1s;
+     text-shadow: 10px 10px 15px black;
+     box-shadow: 10px 10px 15px black;
+    
+}
+
+#box{
+            display: block;
+            border: 1px solid grey;
+            border-radius: 20%;
+            margin: 10% 30%;
+            padding-top: 50px;
+            align-content: center;
+            width: 500px;
+            height: 500px;
+            color: azure;
+            box-shadow: 10px 10px 15px black;
+
+}
+img{
+    margin-left:150px;
+    margin-bottom: 50px;
+    
+}
+strong{
+    margin-left: 60px;
+}
+.gen{
+    margin-left: 190px;
+    margin-top: -20px;
+}
+
+    </style>
+
+
+
+
+
+
+    <div id="header">
+        <h1>STAR WARS</h1>
+        <h2>Character Generator</h2>
+        <p>Everything there is to know about your favourite Characters</p>
+        <button class="fetchCharacter">Fetch Character</button>
+    </div>
+
+
+
+
+    <div id="box">
+        <button class="fetchCharacter">Fetch Character</button>
+        <img src="" alt="" class="character-img"width="200px" height="300px"><br>
+
+        <strong>Name</strong>  
+        <div class="gen name">...</div>
+        <strong >Eyecolor</strong>
+        <div class="gen eyecolor">...</div>
+        <strong>Gender</strong>
+        <div class="gen gender">...</div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>  
+    <script>
+        $("document").ready(function() {
+            //jquery in here
+     const $name = (".gen.name")
+     const $eyeColor = (".gen.eyecolor")
+     const $birthYear = (".gen.gender")
+        $(".fetchCharacter").on("click", (e) => {
+           //e.preventDefault()
+        console.log ("name is changed")
+        $(".gen.name").text('...loading');
+        $(".gen.eyecolor").text('...loading')
+        $(".gen.gender").text("...loading")
+
+        const randomNumber = (Math.ceil(Math.random() * 88))
+        $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${randomNumber}.json`, function(data){
+            console.log(data)
+            $(".gen.name").text(data['name'])
+            $(".gen.eyecolor").text(data['eyeColor'])
+            $(".gen.gender").text(data['gender'])
+            $(".character-img").attr("src",data['image'])
+        })
+        
+   
+        })
+        
+
+        })
+
+    
+    </script>
+
+
+
+
+</body>
+</html>
